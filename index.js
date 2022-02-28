@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const server = express();
@@ -6,14 +7,16 @@ const server = express();
 server.use(express.json());
 server.use(cors());
 
-const PORT = process.env.PORT || 5000;
+//Used when deploying, for serving the data from the front end
+server.use(express.static(path.join(__dirname, 'frontend/build')));
 
-server.get('/', (req, res) => {
-  res.send(`<h1>Welcome to my project<h1/>`);
-});
+const PORT = process.env.PORT || 5000;
 
 server.get('/api', (req, res) => {
   res.json({ message: 'My prject rocks' });
+});
+server.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 server.listen(PORT, () => {
