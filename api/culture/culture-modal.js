@@ -1,17 +1,20 @@
 const db = require('../../data/db-config');
 
 async function getAll() {
-  return db('cultures');
+  return db('culture');
 }
+// async function findBy(filter) {
+//   return db('culture').where(filter);
+// }
 
 async function getBy(id) {
-  return db('cultures').where('id', id).first();
+  return db('culture').where('id', id).first();
 }
-async function postNew(image) {
-  return 'postNew';
+async function update(id, newInfo) {
+  return db('culture').where('id', id).update(newInfo);
 }
 module.exports = {
   getAll,
   getBy,
-  postNew,
+  update,
 };
