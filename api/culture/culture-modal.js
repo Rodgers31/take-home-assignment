@@ -7,7 +7,7 @@ async function getAll() {
 //   return db('culture').where(filter);
 // }
 
-async function getBy(id) {
+async function getById(id) {
   return db('culture').where('id', id).first();
 }
 async function update(id, newInfo) {
@@ -15,6 +15,6 @@ async function update(id, newInfo) {
 }
 module.exports = {
   getAll,
-  getBy,
+  getById,
   update,
 };

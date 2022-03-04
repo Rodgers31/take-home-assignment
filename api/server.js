@@ -6,14 +6,19 @@ const server = express();
 server.use(express.json());
 server.use(cors());
 
-//Used when deploying, for serving the data from the front end
-server.use(express.static(path.join(__dirname, 'frontend/build')));
+const cultureRouter = require('./culture/cultute-router');
 
-server.get('/api', (req, res) => {
-  res.json({ message: 'My prject rocks' });
-});
+server.use('/api/cultures', cultureRouter);
+
+// server.get('/api', (req, res) => {
+//   res.json({ message: 'My prject rocks' });
+// });
+
+//Used when deploying, for serving the data from the front end
+server.use(express.static(path.join(__dirname, '../frontend/build')));
+
 server.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
 });
 
 server.use((err, req, res, next) => {
