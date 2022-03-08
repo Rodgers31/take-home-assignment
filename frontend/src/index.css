@@ -192,7 +192,7 @@ p {
   display: flex;
   flex-direction: column;
 }
-h1.header {
+.header {
   margin: 2rem;
   display: flex;
   justify-content: center;

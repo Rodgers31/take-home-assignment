@@ -30,6 +30,7 @@ const App = () => {
   return (
     <>
       <h1 className='header'>Culture App</h1>
+      <h3 className='header'>Uclassified page</h3>
       <Category />
       <Culture cultures={cultures} />
     </>
