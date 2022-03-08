@@ -27,6 +27,7 @@
     "knex": "^0.95.15",
     "morgan": "^1.10.0",
     "react-axios": "^2.0.5",
+    "react-router-dom": "^6.2.2",
     "sqlite3": "^5.0.2"
   }
 }

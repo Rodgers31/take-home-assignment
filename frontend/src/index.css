@@ -30,6 +30,7 @@ Variables
   --clr-grey-8: hsl(210, 31%, 80%);
   --clr-grey-9: hsl(212, 33%, 89%);
   --clr-grey-10: hsl(210, 36%, 96%);
+  --clr-header: rgb(16, 42, 66);
   --clr-white: #fff;
   --clr-red-dark: hsl(360, 67%, 44%);
   --clr-red-light: hsl(360, 71%, 66%);
@@ -195,6 +196,29 @@ h1.header {
   margin: 2rem;
   display: flex;
   justify-content: center;
+}
+.btn-container {
+  margin-bottom: 4rem;
+  display: flex;
+  justify-content: center;
+}
+.filter-btn {
+  background: transparent;
+  border-color: transparent;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-transform: capitalize;
+  margin: 0 0.5rem;
+  letter-spacing: 1px;
+  padding: 0.375rem 0.75rem;
+  color: var(--clr-header);
+  cursor: pointer;
+  transition: var(--transition);
+  border-radius: var(--radius);
+}
+.filter-btn:hover {
+  background: var(--clr-header);
+  color: var(--clr-white);
 }
 @media screen and (min-width: 576px) {
   .products {
