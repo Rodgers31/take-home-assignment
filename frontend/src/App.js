@@ -10,14 +10,6 @@ const url = 'http://localhost:9000/api/cultures';
 const App = () => {
   const [cultures, setCulture] = useState([]);
 
-  // const filterItems = (category) => {
-  //   if (category === 'all') {
-  //     return setCulture(cultures);
-  //   }
-  //   const newItems = cultures.filter((item) => item.forming === forming);
-  //   setCulture(newItems);
-  // };
-
   const getCultures = async () => {
     const response = await fetch(url);
     const cultures = await response.json();

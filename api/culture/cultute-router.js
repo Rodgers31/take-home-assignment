@@ -11,6 +11,16 @@ router.get('/', async (req, res, next) => {
     })
     .catch(next);
 });
+router.get('/forming', async (req, res, next) => {
+  let { forming } = req.body;
+  Culture.findBy({ forming });
+  console
+    .log('forming', forming)
+    .then((images) => {
+      res.status(200).json(images);
+    })
+    .catch(next);
+});
 router.get('/:id', async (req, res, next) => {
   Culture.getById(req.params.id)
     .then((culture) => {
@@ -24,6 +34,7 @@ router.get('/:id', async (req, res, next) => {
     })
     .catch(next);
 });
+
 router.put('/:id', async (req, res, next) => {
   const id = req.params.id;
   const changes = req.body;

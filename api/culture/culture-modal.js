@@ -3,9 +3,11 @@ const db = require('../../data/db-config');
 async function getAll() {
   return db('culture');
 }
-// async function findBy(filter) {
-//   return db('culture').where(filter);
-// }
+async function findBy(filter) {
+  return db('culture')
+    .select('id', 'url', 'lastModified', 'forming')
+    .where(filter);
+}
 
 async function getById(id) {
   return db('culture').where('id', id).first();
@@ -17,4 +19,5 @@ module.exports = {
   getAll,
   getById,
   update,
+  findBy,
 };
