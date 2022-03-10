@@ -3,7 +3,7 @@ import { FixedSizeList as List } from 'react-window';
 import InfiniteLoader from 'react-window-infinite-loader';
 import axios from 'axios';
 
-export const Row = ({ cultures }) => {
+export const Row = ({ cultures, loading }) => {
   const handleForming = (id) => {
     axios
       .put(`http://localhost:9000/api/cultures/${id}`, {
@@ -11,6 +11,7 @@ export const Row = ({ cultures }) => {
       })
 
       .then((res) => {
+        window.alert(`${res.data.message}`);
         console.log('return from post', res.data);
       });
   };
@@ -21,9 +22,14 @@ export const Row = ({ cultures }) => {
       })
 
       .then((res) => {
+        window.alert(`${res.data.message}`);
         console.log('return from post', res.data);
       });
   };
+  if (loading) {
+    console.log('loading', loading);
+    return <h1 className='header'>Loading....</h1>;
+  }
   return (
     <>
       <ul className='culture'>
