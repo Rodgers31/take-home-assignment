@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { FaBackward } from 'react-icons/fa';
 
 const url = 'http://localhost:9000/api/cultures/nonforming';
 
@@ -18,8 +19,8 @@ const Nonforming = () => {
   return (
     <>
       <h1 className='header'>Non Forming</h1>
-      <Link to='/forming' className='filter-btn'>
-        Forming
+      <Link to='/' className='filter-btn' id='header'>
+        <FaBackward />
       </Link>
       <ul className='culture'>
         {cultures.map((culture) => {
