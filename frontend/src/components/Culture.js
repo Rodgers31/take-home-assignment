@@ -1,8 +1,29 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { Fragment, useState } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import InfiniteLoader from 'react-window-infinite-loader';
+import axios from 'axios';
 
 export const Row = ({ cultures }) => {
+  const handleForming = (id) => {
+    axios
+      .put(`http://localhost:9000/api/cultures/${id}`, {
+        forming: true,
+      })
+
+      .then((res) => {
+        console.log('return from post', res.data);
+      });
+  };
+  const handleNonforming = (id) => {
+    axios
+      .put(`http://localhost:9000/api/cultures/${id}`, {
+        forming: false,
+      })
+
+      .then((res) => {
+        console.log('return from post', res.data);
+      });
+  };
   return (
     <>
       <ul className='culture'>
@@ -12,8 +33,13 @@ export const Row = ({ cultures }) => {
             <li key={id}>
               <img src={url} alt={url} />
               <div className='form'>
-                <button className='btn'>Forming</button>
-                <button className='btn'>Not forming</button>
+                <button className='btn' onClick={() => handleForming(id)}>
+                  Forming
+                </button>
+
+                <button className='btn' onClick={() => handleNonforming(id)}>
+                  Not forming
+                </button>
               </div>
             </li>
           );
