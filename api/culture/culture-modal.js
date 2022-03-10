@@ -3,10 +3,14 @@ const db = require('../../data/db-config');
 async function getAll() {
   return db('culture');
 }
-async function findBy(filter) {
-  return db('culture')
-    .select('id', 'url', 'lastModified', 'forming')
-    .where(filter);
+async function findForming() {
+  return db('culture').where('forming', true);
+}
+async function findNonforming() {
+  return db('culture').where('forming', false);
+}
+async function findUnclassified() {
+  return db('culture').where('forming', null);
 }
 
 async function getById(id) {
@@ -19,5 +23,7 @@ module.exports = {
   getAll,
   getById,
   update,
-  findBy,
+  findForming,
+  findUnclassified,
+  findNonforming,
 };

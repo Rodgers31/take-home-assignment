@@ -12,12 +12,15 @@ router.get('/', async (req, res, next) => {
     .catch(next);
 });
 router.get('/forming', async (req, res, next) => {
-  let { forming } = req.body;
-  Culture.findBy({ forming });
-  console
-    .log('forming', forming)
-    .then((images) => {
-      res.status(200).json(images);
+  Culture.findForming()
+    .then((culture) => {
+      if (!culture) {
+        res.status(404).json({
+          message: 'The culture does not exist',
+        });
+      } else {
+        res.status(200).json(culture);
+      }
     })
     .catch(next);
 });
