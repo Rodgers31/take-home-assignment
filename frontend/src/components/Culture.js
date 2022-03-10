@@ -2,25 +2,6 @@ import React, { Fragment, PureComponent } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import InfiniteLoader from 'react-window-infinite-loader';
 
-const LOADING = 1;
-const LOADED = 2;
-let itemStatusMap = {};
-
-const isItemLoaded = (index) => !!itemStatusMap[index];
-const loadMoreItems = (startIndex, stopIndex) => {
-  for (let index = startIndex; index <= stopIndex; index++) {
-    itemStatusMap[index] = LOADING;
-  }
-  return new Promise((resolve) =>
-    setTimeout(() => {
-      for (let index = startIndex; index <= stopIndex; index++) {
-        itemStatusMap[index] = LOADED;
-      }
-      resolve();
-    }, 2500)
-  );
-};
-
 export const Row = ({ cultures }) => {
   return (
     <>
@@ -45,11 +26,7 @@ export const Row = ({ cultures }) => {
 export default function App() {
   return (
     <Fragment>
-      <InfiniteLoader
-        isItemLoaded={isItemLoaded}
-        itemCount={1000}
-        loadMoreItems={loadMoreItems}
-      >
+      <InfiniteLoader itemCount={1000}>
         {({ onItemsRendered, ref }) => (
           <List
             className='culture'
