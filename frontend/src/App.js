@@ -26,12 +26,15 @@ const App = () => {
   }, []);
 
   //Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFistPost = indexOfLastPost - postsPerPage;
+  const currentPosts = cultures.slice(indexOfFistPost, indexOfLastPost);
   return (
     <>
       <h1 className='header'>Culture App</h1>
       <h3 className='header'>Uclassified page</h3>
       <Category />
-      <Culture cultures={cultures} loading={loading} />
+      <Culture cultures={currentPosts} loading={loading} />
     </>
   );
 };
