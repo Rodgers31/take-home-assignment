@@ -1,7 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
+const url = 'http://localhost:9000/api/cultures/nonforming';
 
 const Nonforming = () => {
-  return <div>Nonforming</div>;
+  const [cultures, setCulture] = useState([]);
+
+  const getCultures = async () => {
+    const response = await fetch(url);
+    const cultures = await response.json();
+    setCulture(cultures);
+    console.log('forming', cultures);
+  };
+  useEffect(() => {
+    getCultures();
+  }, []);
+  return (
+    <>
+      <h1 className='header'>Non Forming</h1>
+      <Link to='/forming' className='filter-btn'>
+        Forming
+      </Link>
+      <ul className='culture'>
+        {cultures.map((culture) => {
+          const { id, url } = culture;
+          return (
+            <li key={id}>
+              <img src={url} alt={url} />
+              <div className='form'>
+                <button className='btn'>Forming</button>
+                <button className='btn'>Not forming</button>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </>
+  );
 };
 
 export default Nonforming;
