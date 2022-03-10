@@ -24,6 +24,19 @@ router.get('/forming', async (req, res, next) => {
     })
     .catch(next);
 });
+router.get('/nonforming', async (req, res, next) => {
+  Culture.findNonforming()
+    .then((culture) => {
+      if (!culture) {
+        res.status(404).json({
+          message: 'The culture does not exist',
+        });
+      } else {
+        res.status(200).json(culture);
+      }
+    })
+    .catch(next);
+});
 router.get('/:id', async (req, res, next) => {
   Culture.getById(req.params.id)
     .then((culture) => {
