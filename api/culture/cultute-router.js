@@ -71,11 +71,13 @@ router.put('/:id', async (req, res, next) => {
     .then((change) => {
       if (changes.forming == true) {
         Culture.getById(id).then((item) => {
-          res.status(200).json({ message: `item is forming` });
+          res.status(200).json({ message: `Image ${id} is set to forming` });
         });
       } else if (changes.forming == false) {
         Culture.getById(id).then((item) => {
-          res.status(200).json({ message: `item not forming` });
+          res
+            .status(200)
+            .json({ message: `Image ${id} is set to not forming` });
         });
       } else {
         next();
