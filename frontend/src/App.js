@@ -4,8 +4,9 @@ import Category from './components/Category';
 import Culture from './components/Cultures';
 import Forming from './components/Forming';
 import Nonforming from './components/Nonforming';
-import Pagination from './components/Pagination';
+
 import ReactPaginate from 'react-paginate';
+import axios from 'axios';
 
 const App = () => {
   const [cultures, setCulture] = useState([]);
@@ -51,12 +52,41 @@ const App = () => {
     setCulture(commserver);
   };
 
+  const handleForming = (id) => {
+    axios
+      .put(`http://localhost:9000/api/cultures/${id}`, {
+        forming: true,
+      })
+
+      .then((res) => {
+        window.alert(`${res.data.message}`);
+        console.log('return from post', res.data);
+      });
+  };
+  const handleNonforming = (id) => {
+    axios
+      .put(`http://localhost:9000/api/cultures/${id}`, {
+        forming: false,
+      })
+
+      .then((res) => {
+        window.alert(`${res.data.message}`);
+        console.log('return from post', res.data);
+      });
+  };
+
   return (
     <>
       <h1 className='header'>Culture App</h1>
       <h3 className='header'>Uclassified page</h3>
       <Category />
-      <Culture cultures={cultures} loading={loading} />
+
+      <Culture
+        cultures={cultures}
+        loading={loading}
+        handleForming={handleForming}
+        handleNonforming={handleNonforming}
+      />
       <ReactPaginate
         previousLabel={'previous'}
         nextLabel={'next'}

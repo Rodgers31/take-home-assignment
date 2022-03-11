@@ -1,31 +1,8 @@
 import React, { Fragment, useState } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import InfiniteLoader from 'react-window-infinite-loader';
-import axios from 'axios';
 
-export const Row = ({ cultures, loading }) => {
-  const handleForming = (id) => {
-    axios
-      .put(`http://localhost:9000/api/cultures/${id}`, {
-        forming: true,
-      })
-
-      .then((res) => {
-        window.alert(`${res.data.message}`);
-        console.log('return from post', res.data);
-      });
-  };
-  const handleNonforming = (id) => {
-    axios
-      .put(`http://localhost:9000/api/cultures/${id}`, {
-        forming: false,
-      })
-
-      .then((res) => {
-        window.alert(`${res.data.message}`);
-        console.log('return from post', res.data);
-      });
-  };
+export const Row = ({ cultures, loading, handleNonforming, handleForming }) => {
   if (loading) {
     return <h1 className='header'>Loading....</h1>;
   }
