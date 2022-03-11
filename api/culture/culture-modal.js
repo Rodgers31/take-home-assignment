@@ -1,7 +1,7 @@
 const db = require('../../data/db-config');
 
-async function getAll() {
-  return db('culture');
+async function getAll(changes) {
+  return db('culture').limit(10).offset(changes);
 }
 async function findForming() {
   return db('culture').where('forming', true);

@@ -27,7 +27,6 @@ export const Row = ({ cultures, loading }) => {
       });
   };
   if (loading) {
-    console.log('loading', loading);
     return <h1 className='header'>Loading....</h1>;
   }
   return (
@@ -37,6 +36,7 @@ export const Row = ({ cultures, loading }) => {
           const { id, url } = culture;
           return (
             <li key={id}>
+              <p>{id}</p>
               <img src={url} alt={url} />
               <div className='form'>
                 <button className='btn' onClick={() => handleForming(id)}>

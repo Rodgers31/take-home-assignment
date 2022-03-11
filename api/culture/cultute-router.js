@@ -5,7 +5,8 @@ const Culture = require('./culture-modal');
 const router = express.Router();
 
 router.get('/', async (req, res, next) => {
-  Culture.getAll()
+  const changes = req.query.offset;
+  Culture.getAll(changes)
     .then((images) => {
       res.status(200).json(images);
     })
