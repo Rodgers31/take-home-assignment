@@ -57,7 +57,7 @@ const App = () => {
         previousLabel={'previous'}
         nextLabel={'next'}
         breakLabel={'...'}
-        pageCount={210}
+        pageCount={49}
         marginPagesDisplayed={'4'}
         pageRangeDisplayed={20}
         onPageChange={handlePageClick}
