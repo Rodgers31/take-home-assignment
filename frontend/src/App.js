@@ -53,6 +53,10 @@ const App = () => {
 
   return (
     <>
+      <h1 className='header'>Culture App</h1>
+      <h3 className='header'>Uclassified page</h3>
+      <Category />
+      <Culture cultures={cultures} loading={loading} />
       <ReactPaginate
         previousLabel={'previous'}
         nextLabel={'next'}
@@ -72,15 +76,6 @@ const App = () => {
         breakLinkClassName={'page-link'}
         activeClassName={'active'}
       />
-      <h1 className='header'>Culture App</h1>
-      <h3 className='header'>Uclassified page</h3>
-      <Category />
-      <Culture cultures={cultures} loading={loading} />
-      {/* <Pagination
-        postsPerPage={postsPerPage}
-        totalPosts={cultures.length}
-        paginate={paginate}
-      /> */}
     </>
   );
 };
